@@ -1,0 +1,48 @@
+{
+  "name": "react-native-mobx-firebase",
+  "version": "0.1.0",
+  "description": "React Native with React Navigation, MobX and Firebase boilerplate",
+  "author": "Aliaksandr Andreyeu",
+  "license": "MIT",
+  "homepage": "https://github.com/aliaksandr-andreyeu/react-native-mobx-firebase",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aliaksandr-andreyeu/react-native-mobx-firebase.git"
+  },
+  "main": "src/index.js",
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start",
+    "test": "jest",
+    "postinstall": "husky install && npx husky add .husky/pre-commit \"npm run precommit\"",
+    "precommit": "lint-staged",
+    "format": "prettier --write \"./**/*.{js,json}\"",
+    "lint:js": "eslint \"./**/*.js\"",
+    "lint:js:fix": "eslint --fix \"./**/*.js\"",
+    "lint": "npm run format && npm run lint:js",
+    "lint:fix": "npm run format && npm run lint:js:fix",
+    "build:aab": "cd android && ./gradlew --stop && ./gradlew --stacktrace --no-daemon bundleRelease",
+    "build:apk": "cd android && ./gradlew --stop && ./gradlew --stacktrace --no-daemon assembleRelease",
+    "clean:android": "cd android && ./gradlew --stop && ./gradlew clean",
+    "install:apk": "cd android && ./gradlew --stop && adb install -r ./app/build/outputs/apk/release/app-release.apk",
+    "logcat": "adb logcat *:S ReactNative:V ReactNativeJS:V"
+  },
+  "dependencies": {
+    "react": "18.1.0",
+    "react-native": "0.70.6"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/runtime": "^7.12.5",
+    "@react-native-community/eslint-config": "^2.0.0",
+    "babel-jest": "^26.6.3",
+    "eslint": "^7.32.0",
+    "jest": "^26.6.3",
+    "metro-react-native-babel-preset": "0.72.3",
+    "react-test-renderer": "18.1.0",
+    "prettier": "^2.8.3",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.1.0"
+  }
+}
