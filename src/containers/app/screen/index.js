@@ -1,7 +1,7 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 
-const App = () => {
+const AppScreen = () => {
   return (
     <View>
       <Text>Application</Text>
@@ -9,4 +9,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default AppScreen;
