@@ -3,7 +3,21 @@
     "baseUrl": ".",
     "paths": {
       "@containers": ["./src/containers"],
-      "@containers/*": ["./src/containers/*"]
+      "@containers/*": ["./src/containers/*"],
+      "@stores": ["./src/stores"],
+      "@stores/*": ["./src/stores/*"],
+      "@context": ["./src/context"],
+      "@context/*": ["./src/context/*"],
+      "@images": ["./src/images"],
+      "@images/*": ["./src/images/*"],
+      "@constants": ["./src/constants"],
+      "@constants/*": ["./src/constants/*"],
+      "@helpers": ["./src/helpers"],
+      "@helpers/*": ["./src/helpers/*"],
+      "@navigation": ["./src/navigation"],
+      "@navigation/*": ["./src/navigation/*"],
+      "@components": ["./src/components"],
+      "@components/*": ["./src/components/*"]
     }
   },
   "exclude": ["node_modules"]

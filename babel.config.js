@@ -6,7 +6,14 @@ module.exports = {
       {
         root: '.',
         alias: {
-          '@containers': './src/containers'
+          '@images': './src/images',
+          '@constants': './src/constants',
+          '@helpers': './src/helpers',
+          '@navigation': './src/navigation',
+          '@components': './src/components',
+          '@containers': './src/containers',
+          '@stores': './src/stores',
+          '@context': './src/context'
         }
       }
     ]
