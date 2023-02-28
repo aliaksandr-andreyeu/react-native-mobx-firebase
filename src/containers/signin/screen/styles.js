@@ -5,11 +5,11 @@ const { colors } = theme;
 
 const styles = StyleSheet.create({
   safe: {
-    backgroundColor: colors.white(),
+    backgroundColor: colors.black(),
     flexGrow: 1
   },
   screen: {
-    backgroundColor: colors.white(),
+    backgroundColor: colors.black(),
     flexGrow: 1,
     position: 'relative'
   }

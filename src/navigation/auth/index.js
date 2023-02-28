@@ -6,17 +6,16 @@ import { stackNames } from '@constants';
 
 const Stack = createStackNavigator();
 
+const screenOptions = {
+  headerShown: false
+};
+
 const AuthNavigation = () => (
   <NavigationContainer>
-    <Stack.Navigator
-      initialRouteName={stackNames.signIn}
-      screenOptions={{
-        headerShown: false
-      }}
-    >
-      <Stack.Screen name={stackNames.signIn} component={SignIn} />
-      <Stack.Screen name={stackNames.signUp} component={SignUp} />
-      <Stack.Screen name={stackNames.resetPassword} component={ResetPassword} />
+    <Stack.Navigator initialRouteName={stackNames.auth.signIn} screenOptions={screenOptions}>
+      <Stack.Screen name={stackNames.auth.signIn} component={SignIn} />
+      <Stack.Screen name={stackNames.auth.signUp} component={SignUp} />
+      <Stack.Screen name={stackNames.auth.resetPassword} component={ResetPassword} />
     </Stack.Navigator>
   </NavigationContainer>
 );
