@@ -2,17 +2,18 @@ import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Dashboard } from '@containers';
 import { stackNames } from '@constants';
+import { Header } from '@components';
 
 const Stack = createStackNavigator();
 
-const DashboardStackNavigator = ({ route, navigation }) => {
-  console.log('DashboardNavigator:', route, navigation);
+const options = (props) => ({
+  header: () => <Header {...props} />
+});
 
-  return (
-    <Stack.Navigator initialRouteName={stackNames.app.dashboard}>
-      <Stack.Screen name={stackNames.app.dashboard} component={Dashboard} />
-    </Stack.Navigator>
-  );
-};
+const DashboardStackNavigator = ({ route, navigation }) => (
+  <Stack.Navigator initialRouteName={stackNames.app.dashboard}>
+    <Stack.Screen name={stackNames.app.dashboard} component={Dashboard} options={options} />
+  </Stack.Navigator>
+);
 
 export default DashboardStackNavigator;
