@@ -9,7 +9,16 @@ const theme = {
     },
     white: (a) => {
       return `rgba(255, 255, 255, ${alpha(a)})`;
-    }
+    },
+    primary: '#3f51b5',
+    primaryDark: '#303f9f',
+    secondaryDarkText: '#616161',
+    dividerLight: '#e6e6e6',
+    dividerLighter: '#f5f5f5'
+  },
+  fonts: {
+    titleMedium: 'Poppins-Medium',
+    titleSemiBold: 'Poppins-SemiBold'
   }
 };
 
