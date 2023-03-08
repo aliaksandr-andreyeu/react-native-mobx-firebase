@@ -10,6 +10,7 @@ const theme = {
     white: (a) => {
       return `rgba(255, 255, 255, ${alpha(a)})`;
     },
+    accent: '#ff5252',
     primary: '#3f51b5',
     primaryDark: '#303f9f',
     secondaryDarkText: '#616161',

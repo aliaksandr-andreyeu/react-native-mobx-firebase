@@ -3,35 +3,35 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { UsersIcon, DashboardIcon, ProfileIcon } from '@images';
 import { DashboardStackNavigator, UsersStackNavigator, ProfileStackNavigator } from '../stacks';
 import { tabNames, tabBarLabels } from '@constants';
+import { theme } from '@constants';
 
 import styles from './styles';
+
+const { colors } = theme;
 
 const Tab = createBottomTabNavigator();
 
 const screenOptions = {
-  headerShown: false,
-  tabBarActiveTintColor: '#0D911D',
-  tabBarInactiveTintColor: '#3d403e',
+  tabBarActiveTintColor: colors.primaryDark,
+  tabBarInactiveTintColor: colors.secondaryDarkText,
   tabBarLabelPosition: 'below-icon',
   unmountOnBlur: true,
-  ...styles.tabBarBadgeStyle,
-  ...styles.tabBarItemStyle,
-  ...styles.tabBarLabelStyle,
-  ...styles.tabBarStyle
+  headerShown: false,
+  tabBarBadgeStyle: styles.tabBarBadgeStyle,
+  tabBarItemStyle: styles.tabBarItemStyle,
+  tabBarLabelStyle: styles.tabBarLabelStyle,
+  tabBarStyle: styles.tabBarStyle
 };
 
 const TabNavigator = () => (
-  <Tab.Navigator
-    initialRouteName={tabNames.dashboard}
-    // backBehavior={'history'}
-    screenOptions={screenOptions}
-  >
+  <Tab.Navigator initialRouteName={tabNames.dashboard} screenOptions={screenOptions}>
     <Tab.Screen
       name={tabNames.dashboard}
       component={DashboardStackNavigator}
       options={{
         tabBarLabel: tabBarLabels.dashboard,
-        tabBarIcon: ({ color }) => <DashboardIcon width={24} height={24} color={color} />
+        tabBarIcon: ({ color }) => <DashboardIcon width={24} height={24} color={color} />,
+        tabBarBadge: 2
       }}
     />
     <Tab.Screen
@@ -39,7 +39,8 @@ const TabNavigator = () => (
       component={UsersStackNavigator}
       options={{
         tabBarLabel: tabBarLabels.users,
-        tabBarIcon: ({ color }) => <UsersIcon width={24} height={24} color={color} />
+        tabBarIcon: ({ color }) => <UsersIcon width={24} height={24} color={color} />,
+        tabBarBadge: 42
       }}
     />
     <Tab.Screen
