@@ -3,7 +3,6 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import DrawerScreen from './screen';
 import TabNavigator from '../tabs';
 import { drawerNames } from '@constants';
-
 import styles from './styles';
 
 const Drawer = createDrawerNavigator();

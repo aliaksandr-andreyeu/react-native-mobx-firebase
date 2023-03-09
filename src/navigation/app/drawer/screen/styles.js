@@ -4,6 +4,9 @@ import { theme } from '@constants';
 const { colors, fonts } = theme;
 
 const styles = StyleSheet.create({
+  icon: {
+    marginLeft: 8
+  },
   logoContainer: {
     flexDirection: 'row',
     paddingVertical: 16,

@@ -19,22 +19,28 @@ const DrawerScreen = (props) => {
     </View>
   );
 
+  const getIcon = (Icon, color, size) => (
+    <View style={styles.icon}>
+      <Icon width={size} height={size} color={color} />
+    </View>
+  );
+
   const drawerItems = [
     {
       label: ({ focused }) => getLabel(stackNames.app.dashboard, focused),
-      icon: ({ color, size }) => <DashboardIcon width={24} height={24} color={color} />,
+      icon: ({ color }) => getIcon(DashboardIcon, color, 24),
       focused: Boolean(currentRouteName === tabNames.dashboard || currentRouteName === drawerNames.main),
       onPress: () => props.navigation.navigate(tabNames.dashboard)
     },
     {
       label: ({ focused }) => getLabel(stackNames.app.users, focused),
-      icon: ({ color, size }) => <UsersIcon width={24} height={24} color={color} />,
+      icon: ({ color }) => getIcon(UsersIcon, color, 24),
       focused: Boolean(currentRouteName === tabNames.users),
       onPress: () => props.navigation.navigate(tabNames.users)
     },
     {
       label: ({ focused }) => getLabel(stackNames.app.profile, focused),
-      icon: ({ color, size }) => <ProfileIcon width={24} height={24} color={color} />,
+      icon: ({ color }) => getIcon(ProfileIcon, color, 24),
       focused: Boolean(currentRouteName === tabNames.profile),
       onPress: () => props.navigation.navigate(tabNames.profile)
     }
