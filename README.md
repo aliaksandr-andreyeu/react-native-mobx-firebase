@@ -6,7 +6,7 @@ React Native boilerplate with React Navigation, MobX and Firebase
 
 ## Setup
 
-- Getting Started with [React Native](https://reactnative.dev/docs/environment-setup).
+Getting Started with [React Native](https://reactnative.dev/docs/environment-setup).
 
 ```bash
 npm install
