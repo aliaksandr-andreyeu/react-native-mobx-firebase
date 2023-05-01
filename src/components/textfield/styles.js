@@ -3,7 +3,7 @@ import { theme } from '@constants';
 
 const {
   colors: { white, accent, primary, secondaryDarkText },
-  fonts: { textRegular },
+  fonts: { textRegular, textMedium, textSemiBold },
   dimensions: { base }
 } = theme;
 
@@ -26,11 +26,15 @@ const styles = StyleSheet.create({
   },
   label: {
     color: primary,
-    fontFamily: textRegular,
+    fontFamily: textMedium,
     fontSize: base * 1.5,
-    fontWeight: '400',
+    fontWeight: '500',
     lineHeight: base * 2.25,
     textAlignVertical: 'center'
+  },
+  labelFocused: {
+    fontFamily: textSemiBold,
+    fontWeight: '600'
   },
   inputContainer: {
     backgroundColor: white(),
@@ -44,6 +48,9 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingHorizontal: base * 1.5,
     paddingVertical: 0
+  },
+  inputContainerFocused: {
+    borderWidth: base * 0.1875
   },
   withSecure: {
     paddingRight: base * 0.75

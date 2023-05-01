@@ -16,6 +16,7 @@ const {
 } = config;
 
 const TextField = ({
+  autoFocus,
   containerStyle,
   label,
   value,
@@ -30,6 +31,7 @@ const TextField = ({
   returnKeyType
 }) => {
   const [visible, setVisible] = useState(!secure);
+  const [focusIn, setFocusIn] = useState(false);
 
   const onSubmitHandler = () => {
     onSubmit && onSubmit();
@@ -43,6 +45,14 @@ const TextField = ({
     setVisible(!visible);
   };
 
+  const focusInHandler = () => {
+    setFocusIn(true);
+  };
+
+  const focusOutHandler = () => {
+    setFocusIn(false);
+  };
+
   return (
     <View
       style={{
@@ -53,12 +63,20 @@ const TextField = ({
     >
       {Boolean(label) && (
         <View style={styles.labelContainer}>
-          <Text style={styles.label}>{label}</Text>
+          <Text style={{ ...styles.label, ...(Boolean(focusIn) && styles.labelFocused) }}>{label}</Text>
         </View>
       )}
 
-      <View style={{ ...styles.inputContainer, ...(Boolean(secure) && styles.withSecure) }}>
+      <View
+        style={{
+          ...styles.inputContainer,
+          ...(Boolean(secure) && styles.withSecure),
+          ...(Boolean(focusIn) && styles.inputContainerFocused)
+        }}
+      >
         <TextInput
+          onFocus={focusInHandler}
+          onBlur={focusOutHandler}
           style={styles.input}
           {...(value && { value })}
           onSubmitEditing={onSubmitHandler}
@@ -69,13 +87,14 @@ const TextField = ({
           keyboardType={keyboardType}
           returnKeyType={returnKeyType}
           secureTextEntry={!visible}
+          autoFocus={autoFocus}
         />
         {secure && (
           <TouchableOpacity style={styles.buttonContainer} activeOpacity={activeOpacity} onPress={onPress}>
             {visible ? (
               <EyeIcon width={base * 3} height={base * 3} color={secondaryDarkText} />
             ) : (
-              <EyeOffIcon width={base * 3} height={base * 3} color={secondaryDarkText} />
+              <EyeOffIcon width={base * 3} height={base * 3} color={secondaryLightText} />
             )}
           </TouchableOpacity>
         )}
@@ -90,6 +109,7 @@ const TextField = ({
 };
 
 TextField.propTypes = {
+  autoFocus: PropTypes.bool,
   containerStyle: PropTypes.object,
   label: PropTypes.string,
   value: PropTypes.string,
@@ -113,6 +133,7 @@ TextField.propTypes = {
 };
 
 TextField.defaultProps = {
+  autoFocus: false,
   containerStyle: {},
   label: '',
   value: '',
