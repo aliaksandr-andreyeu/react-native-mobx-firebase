@@ -49,9 +49,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: base * 1.5,
     paddingVertical: 0
   },
-  inputContainerFocused: {
-    borderWidth: base * 0.1875
-  },
   withSecure: {
     paddingRight: base * 0.75
   },

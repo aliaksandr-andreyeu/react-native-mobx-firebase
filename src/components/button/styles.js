@@ -8,11 +8,9 @@ const {
 } = theme;
 
 const styles = StyleSheet.create({
-  buttonContainer: {
-    width: '100%',
-    height: base * 6,
-    borderRadius: base * 0.5,
+  viewContainer: {
     backgroundColor: white(),
+    borderRadius: base * 0.5,
     shadowColor: black(),
     shadowOffset: {
       width: 0,
@@ -22,13 +20,18 @@ const styles = StyleSheet.create({
     shadowRadius: 1.41,
     elevation: 4
   },
-  buttonContainerPrimary: {
+  buttonContainer: {
+    width: '100%',
+    height: base * 6,
+    borderRadius: base * 0.5
+  },
+  viewContainerPrimary: {
     backgroundColor: primary
   },
-  buttonContainerAccent: {
+  viewContainerAccent: {
     backgroundColor: accent
   },
-  buttonContainerDisabled: {
+  viewContainerDisabled: {
     backgroundColor: white()
   },
   buttonBoxDisabled: {

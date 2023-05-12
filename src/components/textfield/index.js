@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { Animated, View, Text, TextInput, TouchableOpacity, Easing } from 'react-native';
 import { EyeIcon, EyeOffIcon } from '@images';
 import { theme, config } from '@constants';
 
@@ -12,8 +12,11 @@ const {
 } = theme;
 
 const {
-  buttons: { activeOpacity }
+  buttons: { activeOpacity },
+  animation: { duration }
 } = config;
+
+const { ease, inOut } = Easing;
 
 const TextField = ({
   autoFocus,
@@ -33,6 +36,17 @@ const TextField = ({
   const [visible, setVisible] = useState(!secure);
   const [focusIn, setFocusIn] = useState(false);
 
+  const animateStartValue = base * 0.125;
+  const animateEndValue = animateStartValue * 1.5;
+
+  const borderWidth = useRef(new Animated.Value(animateStartValue)).current;
+
+  const animateConfig = {
+    duration: duration,
+    easing: inOut(ease),
+    useNativeDriver: false
+  };
+
   const onSubmitHandler = () => {
     onSubmit && onSubmit();
   };
@@ -47,10 +61,20 @@ const TextField = ({
 
   const focusInHandler = () => {
     setFocusIn(true);
+
+    Animated.timing(borderWidth, {
+      ...animateConfig,
+      toValue: animateEndValue
+    }).start();
   };
 
   const focusOutHandler = () => {
     setFocusIn(false);
+
+    Animated.timing(borderWidth, {
+      ...animateConfig,
+      toValue: animateStartValue
+    }).start();
   };
 
   return (
@@ -63,15 +87,24 @@ const TextField = ({
     >
       {Boolean(label) && (
         <View style={styles.labelContainer}>
-          <Text style={{ ...styles.label, ...(Boolean(focusIn) && styles.labelFocused) }}>{label}</Text>
+          <Text
+            style={{
+              ...styles.label,
+              ...(Boolean(focusIn) && styles.labelFocused)
+            }}
+          >
+            {label}
+          </Text>
         </View>
       )}
 
-      <View
+      <Animated.View
         style={{
           ...styles.inputContainer,
           ...(Boolean(secure) && styles.withSecure),
-          ...(Boolean(focusIn) && styles.inputContainerFocused)
+          ...{
+            borderWidth
+          }
         }}
       >
         <TextInput
@@ -98,7 +131,7 @@ const TextField = ({
             )}
           </TouchableOpacity>
         )}
-      </View>
+      </Animated.View>
       {Boolean(error) && (
         <View style={styles.errorContainer}>
           <Text style={styles.error}>{error}</Text>

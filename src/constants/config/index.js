@@ -13,11 +13,15 @@ const config = {
   bottomBar: {
     height: 56
   },
-  default: {
+  common: {
     activeOpacity: 1
   },
   buttons: {
-    activeOpacity: 0.7
+    activeOpacity: 0.75
+  },
+  animation: {
+    duration: 250,
+    speed: 25
   }
 };
 

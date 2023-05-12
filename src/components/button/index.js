@@ -1,23 +1,71 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-
-import { Text, View, TouchableOpacity } from 'react-native';
-import { config } from '@constants';
+import { Animated, Text, View, TouchableOpacity, Easing } from 'react-native';
+import { theme, config } from '@constants';
 
 import styles from './styles';
 
-const { buttons, common } = config;
+const {
+  dimensions: { base }
+} = theme;
+
+const {
+  common: { activeOpacity },
+  animation: { speed }
+} = config;
+
+const { ease, inOut } = Easing;
 
 const Button = ({ disabled, containerStyle, label, onPress, color }) => {
+  const animateStartValue = () => base * 0.125;
+  const animateEndValue = (opct = false) => animateStartValue() * (opct ? 0.75 : 0.98);
+
+  const animateConfig = {
+    speed: speed,
+    easing: inOut(ease),
+    useNativeDriver: true
+  };
+
+  const animateStartConfig = () => ({
+    ...animateConfig,
+    toValue: animateStartValue()
+  });
+
+  const animateEndConfig = (opct = false) => ({
+    ...animateConfig,
+    toValue: animateEndValue(opct)
+  });
+
+  const scale = useRef(new Animated.Value(animateStartValue())).current;
+  const opacity = useRef(new Animated.Value(animateStartValue())).current;
+
   const onPressHandler = () => {
     if (!disabled) {
       onPress && onPress();
     }
   };
 
+  const onPressInHandler = () => {
+    if (!disabled) {
+      Animated.parallel([
+        Animated.spring(scale, animateEndConfig()),
+        Animated.spring(opacity, animateEndConfig(true))
+      ]).start();
+    }
+  };
+
+  const onPressOutHandler = () => {
+    if (!disabled) {
+      Animated.parallel([
+        Animated.spring(scale, animateStartConfig()),
+        Animated.spring(opacity, animateStartConfig())
+      ]).start();
+    }
+  };
+
   const containerColorStyle =
-    color === 'primary' ? styles.buttonContainerPrimary : color === 'accent' ? styles.buttonContainerAccent : false;
-  const containerDisabledColorStyle = disabled ? styles.buttonContainerDisabled : false;
+    color === 'primary' ? styles.viewContainerPrimary : color === 'accent' ? styles.viewContainerAccent : false;
+  const containerDisabledColorStyle = disabled ? styles.viewContainerDisabled : false;
 
   const boxColorStyle =
     color === 'primary' ? styles.buttonBoxPrimary : color === 'accent' ? styles.buttonBoxAccent : false;
@@ -37,34 +85,44 @@ const Button = ({ disabled, containerStyle, label, onPress, color }) => {
     : false;
 
   return label ? (
-    <TouchableOpacity
-      activeOpacity={disabled ? common.activeOpacity : buttons.activeOpacity}
-      onPress={onPressHandler}
+    <Animated.View
       style={{
-        ...styles.buttonContainer,
+        ...styles.viewContainer,
         ...containerColorStyle,
         ...containerDisabledColorStyle,
-        ...(Boolean(containerStyle) && containerStyle)
+        ...(Boolean(containerStyle) && containerStyle),
+        ...{
+          transform: [{ scale }],
+          opacity
+        }
       }}
     >
-      <View
-        style={{
-          ...styles.buttonBox,
-          ...boxColorStyle,
-          ...boxColorDisabledStyle
-        }}
+      <TouchableOpacity
+        activeOpacity={activeOpacity}
+        onPress={onPressHandler}
+        onPressIn={onPressInHandler}
+        onPressOut={onPressOutHandler}
+        style={styles.buttonContainer}
       >
-        <Text
+        <View
           style={{
-            ...styles.buttonDesc,
-            ...descColorStyle,
-            ...descColorDisabledStyle
+            ...styles.buttonBox,
+            ...boxColorStyle,
+            ...boxColorDisabledStyle
           }}
         >
-          {label}
-        </Text>
-      </View>
-    </TouchableOpacity>
+          <Text
+            style={{
+              ...styles.buttonDesc,
+              ...descColorStyle,
+              ...descColorDisabledStyle
+            }}
+          >
+            {label}
+          </Text>
+        </View>
+      </TouchableOpacity>
+    </Animated.View>
   ) : null;
 };
 
