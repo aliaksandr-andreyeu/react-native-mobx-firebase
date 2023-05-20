@@ -1,3 +1,14 @@
 {
-  "preset": "react-native"
+  "preset": "react-native",
+  "moduleNameMapper": {
+    "^@helpers(.*)$": "<rootDir>/src/helpers$1",
+    "^@environments(.*)$": "<rootDir>/src/environments$1",
+    "^@navigation(.*)$": "<rootDir>/src/navigation$1",
+    "^@stores(.*)$": "<rootDir>/src/stores$1",
+    "^@constants(.*)$": "<rootDir>/src/constants$1",
+    "^@containers(.*)$": "<rootDir>/src/containers$1",
+    "^@images(.*)$": "<rootDir>/src/images$1",
+    "^@components(.*)$": "<rootDir>/src/components$1",
+    "^@context(.*)$": "<rootDir>/src/context$1"
+  }
 }

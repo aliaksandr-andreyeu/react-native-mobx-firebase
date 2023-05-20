@@ -4,6 +4,8 @@
     "paths": {
       "@containers": ["./src/containers"],
       "@containers/*": ["./src/containers/*"],
+      "@environments": ["./src/environments"],
+      "@environments/*": ["./src/environments/*"],
       "@stores": ["./src/stores"],
       "@stores/*": ["./src/stores/*"],
       "@context": ["./src/context"],
