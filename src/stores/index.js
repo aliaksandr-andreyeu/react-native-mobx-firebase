@@ -1,9 +1,10 @@
-import { usersStore, authStore, uiStore } from './modules';
+import { usersStore, accountStore, authStore, uiStore } from './modules';
 
 const stores = {
   usersStore,
   authStore,
-  uiStore
+  uiStore,
+  accountStore
 };
 
 export default stores;
