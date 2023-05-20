@@ -1,6 +1,7 @@
 .husky/
 .vscode/
 .bundle/
+coverage/
 assets/
 android/
 ios/
