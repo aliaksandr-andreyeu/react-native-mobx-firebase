@@ -1,6 +1,7 @@
 import { Platform } from 'react-native';
 
 const config = {
+  mode: (process && process.env && process.env.NODE_ENV) || 'development',
   isAndroid: Platform.OS === 'android',
   isIOS: Platform.OS === 'ios',
   platform: {
@@ -21,7 +22,7 @@ const config = {
   },
   animation: {
     duration: 250,
-    speed: 25
+    speed: 50
   }
 };
 
