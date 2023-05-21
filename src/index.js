@@ -1,18 +1,17 @@
 import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'mobx-react';
-import { App } from '@containers';
-
+import { App, ErrorBoundary } from '@containers';
 import stores from '@stores';
 
-const Application = () => {
-  return (
-    <SafeAreaProvider>
+const Application = () => (
+  <SafeAreaProvider>
+    <ErrorBoundary>
       <Provider {...stores}>
         <App />
       </Provider>
-    </SafeAreaProvider>
-  );
-};
+    </ErrorBoundary>
+  </SafeAreaProvider>
+);
 
 export default Application;

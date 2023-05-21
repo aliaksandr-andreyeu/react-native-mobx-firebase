@@ -1,4 +1,4 @@
-import { requests } from '@constants';
+import { requests } from '@helpers';
 
 const account = {
   contactUs: (url, payload) => requests.post(url, payload),

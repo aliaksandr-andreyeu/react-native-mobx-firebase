@@ -1,4 +1,4 @@
-import { requests } from '@constants';
+import { requests } from '@helpers';
 
 const auth = {
   signIn: (url, payload) => requests.post(url, payload),

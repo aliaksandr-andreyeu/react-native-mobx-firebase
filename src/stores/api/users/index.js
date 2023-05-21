@@ -1,4 +1,4 @@
-import { requests } from '@constants';
+import { requests } from '@helpers';
 
 const users = {
   getUsers: (url) => requests.get(url),
