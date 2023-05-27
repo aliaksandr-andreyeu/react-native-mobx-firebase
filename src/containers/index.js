@@ -7,5 +7,19 @@ import ResetPassword from './reset-password';
 import Users from './users';
 import TermsAndConditions from './terms-and-conditions';
 import PrivacyPolicy from './privacy-policy';
+import ErrorBoundary from './error-boundary';
+import Intro from './intro';
 
-export { App, Profile, SignIn, SignUp, ResetPassword, Users, TermsAndConditions, PrivacyPolicy, Dashboard };
+export {
+  ErrorBoundary,
+  App,
+  Profile,
+  SignIn,
+  SignUp,
+  ResetPassword,
+  Users,
+  TermsAndConditions,
+  PrivacyPolicy,
+  Dashboard,
+  Intro
+};
